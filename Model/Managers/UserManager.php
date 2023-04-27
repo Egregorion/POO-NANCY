@@ -17,11 +17,12 @@ class UserManager{
 
     public static function insertUser(String $pseudo, String $password)
     {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT); 
         $pdo = dbconnect();
         $sql = "INSERT INTO users (pseudo, password) VALUES (:pseudo, :password)";
         $stmt = $pdo->prepare($sql); 
         $stmt->bindParam(':pseudo', $pseudo);
-        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':password', $hashedPassword);
         $stmt->execute();
         $newUser = $pdo->lastInsertId();
         return $newUser;
@@ -30,20 +31,20 @@ class UserManager{
     public static function connectUser($pseudo, $password)
     {
         $pdo = dbconnect();
-        $sql = "SELECT * FROM users WHERE pseudo= :pseudo AND password=:password";
+        $sql = "SELECT * FROM users WHERE pseudo= :pseudo";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam('pseudo', $pseudo);
-        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':pseudo', $pseudo);
+        $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
-        $result = $stmt->fetch();
-        return $result;
-        /*if($result) {
-            $passwordRegistered = $result->getPassword();
-            if($passwordRegistered === $password){
-                return $result;
+        $user = $stmt->fetch();
+        if($user) {
+            $registeredPassword = $user->getPassword();
+            $verifiedUser = password_verify($password, $registeredPassword);
+            if($verifiedUser){
+                var_dump($user);
             }
         }else{
             return false;
-        }*/
+        }
     }
 }
