@@ -46,7 +46,6 @@ class UserManager{
                     'id' => $user->getId(),
                     'pseudo' => $user->getPseudo()
                 ];
-                var_dump($_SESSION);
             }
         }else{
             return false;

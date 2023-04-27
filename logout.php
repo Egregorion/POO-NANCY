@@ -1,6 +1,7 @@
 <?php 
-
+// le logout d'un site au final c'est juste unset la variable de session
 session_start();
-var_dump($_SESSION['user']);
 session_unset();
-var_dump($_SESSION['user']);
+header('location:index.php?message=Vous avez bien été déconnecté');
+
+
