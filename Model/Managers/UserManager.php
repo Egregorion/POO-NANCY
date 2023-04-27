@@ -41,7 +41,12 @@ class UserManager{
             $registeredPassword = $user->getPassword();
             $verifiedUser = password_verify($password, $registeredPassword);
             if($verifiedUser){
-                var_dump($user);
+                session_start(); //on lance la session avec session
+                $_SESSION['user'] = [
+                    'id' => $user->getId(),
+                    'pseudo' => $user->getPseudo()
+                ];
+                var_dump($_SESSION);
             }
         }else{
             return false;
