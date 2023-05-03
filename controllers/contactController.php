@@ -1,4 +1,20 @@
 <?php 
+require_once './model/managers/ContactManager.php';
+
+function showContacts() {
+    $contacts = ContactManager::getAllContacts();
+    require './views/indexView.php';
+}
+
+function showContact($id) {
+    $contact = ContactManager::getContactById($id);
+    if($contact){
+        require './views/contactView.php';
+    }else{
+        //rediriger vers une page d'erreur
+    }
+    
+}
 
 function addContact() {
     require './views/newcontactView.php';
@@ -12,5 +28,4 @@ function addContact() {
             move_uploaded_file($currentLocation, $uploadLocation);
         }
     }
-
 }

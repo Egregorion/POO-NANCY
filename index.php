@@ -19,6 +19,11 @@ if(isset($_GET) && !empty($_GET)){
                 break;
             case 'add':
                 addContact();
+            case 'show':
+                if(!empty($_GET['id'])){
+                    $id = $_GET['id'];
+                    showContact($id);
+                }
             default:
                 
                 break;
@@ -27,5 +32,5 @@ if(isset($_GET) && !empty($_GET)){
     //$message = $_GET['message'];
     //echo $message;
 }else {
-    echo "ceci est ma page d'accueil";
+    showContacts();
 }
