@@ -1,5 +1,5 @@
 <?php 
-require 'partials/header.php';
+require_once 'partials/header.php';
 ?>
 
 <?php foreach($contacts as $contact){ ?>
@@ -13,6 +13,6 @@ require 'partials/header.php';
 <?php } ?>
 
 <?php
-require 'partials/footer.php';
+require_once 'partials/footer.php';
 ?>
     

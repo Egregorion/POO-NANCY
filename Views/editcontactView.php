@@ -7,15 +7,15 @@ require_once 'partials/header.php';
 <form action="" method="post" enctype="multipart/form-data">
     <div>
         <label for="lastname">Lastname</label>
-        <input id="lastname" type="text" name="lastname">
+        <input id="lastname" type="text" name="lastname" value="<?= $contact->getLastname() ?>">
     </div>
     <div>
         <label for="firstname">Firstname</label>
-        <input id="firstname" type="text" name="firstname">
+        <input id="firstname" type="text" name="firstname" value="<?= $contact->getFirstname() ?>">
     </div>
     <div>
         <label for="email">Email</label>
-        <input id="email" type="email" name="email">
+        <input id="email" type="email" name="email" value="<?= $contact->getEmail() ?>">
     </div>
     <div>
         <label for="picture">Picture</label>

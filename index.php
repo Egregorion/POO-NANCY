@@ -3,6 +3,7 @@ require_once './controllers/loginController.php';
 require_once './controllers/logoutController.php';
 require_once './controllers/registerController.php';
 require_once './controllers/contactController.php';
+require_once './controllers/errorController.php';
 
 if(isset($_GET) && !empty($_GET)){
     if(isset($_GET['action']) && !empty($_GET['action'])){
@@ -19,14 +20,23 @@ if(isset($_GET) && !empty($_GET)){
                 break;
             case 'add':
                 addContact();
+                break;
             case 'show':
                 if(!empty($_GET['id'])){
                     $id = $_GET['id'];
                     showContact($id);
-                }
-            default:
-                
-                break;
+                }else{
+                    error("cet identifiant n'existe pas");
+                } 
+                break;           
+            case 'update':
+                if(!empty($_GET['id'])){
+                    $id = $_GET['id'];
+                    updateContact($id);
+                }else{
+                    error("cet identifiant n'existe pas");
+                } 
+
         }
     }
     //$message = $_GET['message'];

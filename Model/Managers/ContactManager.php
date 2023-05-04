@@ -24,4 +24,12 @@ class ContactManager {
         $result = $stmt->fetch();
         return $result;
     } 
+
+    public static function updateContactById(){
+        
+    }
+
+    public static function deleteContactById(){
+        
+    }
 }

@@ -1,5 +1,5 @@
 <?php 
-require 'partials/header.php';
+require_once 'partials/header.php';
 ?>
 
 <form action="" method="post">
@@ -15,5 +15,5 @@ require 'partials/header.php';
 </form>
 
 <?php
-require 'partials/footer.php';
+require_once 'partials/footer.php';
 ?>
